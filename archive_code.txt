@@ -1,0 +1,43 @@
+<div className="row g-2 mt-4">
+    <label className='col-md-6 col-12'>Proof of Identity (Tick relevant and mention the details)<span /></label>
+    <div className="col-md-6 col-12">
+        {["Aadhaar No.", "Voter ID No."].map((d, idx) => {
+            return (
+                <div key={`poi__${idx}`} className='radio-input' >
+                    <input type="radio" name="poi" value={d} id={`pod__${idx}`} />
+                    <label htmlFor={`pod__${idx}`}>{d}</label>
+                </div>
+            )
+        })}
+
+        <div className='mt-3'>
+            <label>Mention ID No.<span /></label>
+            <input type="text" className='form-control' />
+        </div>
+    </div>
+
+</div>
+
+
+{["Aadhaar No.", "Voter ID No.", "Driving License No."].map((d, idx) => {
+    return (
+        <div key={`poa__${idx}`} className='radio-input' >
+            <input type="radio" name="poa" value={d} id={`poa__${idx}`} />
+            <label htmlFor={`poa__${idx}`}>{d}</label>
+        </div>
+    )
+})}
+
+
+    {[
+    { label: "Street Address" },
+    { label: "City" },
+    { label: "State" },
+    { label: "Country" },
+    { label: "Pincode" },
+].map((d, idx) => {
+    return (<div className='mt-2' key={`address_component__${idx}`}>
+        <label>{d.label}</label>
+        <input type="text" className='form-control' />
+    </div>)
+})}
