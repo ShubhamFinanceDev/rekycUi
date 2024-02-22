@@ -93,7 +93,7 @@ const useLogicHook = () => {
 
             case "SUCCESS_MSG":
                 setloanOrApplication({ ...loanOrApplicationInitialState });
-                return setConditionalRenderCases({ ...conditionalRenderCasesInitialState, error: "", showInitialForm: false, })
+                return setConditionalRenderCases({ ...conditionalRenderCasesInitialState, error: "", showInitialForm: false, success: "Thanks For Your Confirmation" })
             default:
                 return
         }
