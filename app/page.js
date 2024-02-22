@@ -84,7 +84,7 @@ const HomePage = () => {
                         <div className="col-md-6 col-12">
                             <p className='mt-3 mb-3'>Declaration: I hereby declare that my documents are up to date</p>
                             <button className='btn btn-primary'
-                                sonClick={completeKYCWithoutChangeActionHandler}>
+                                onClick={completeKYCWithoutChangeActionHandler}>
                                 Confirm</button>
                         </div>
                     </div>}
