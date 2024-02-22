@@ -9,7 +9,7 @@ import UsersDetailsFormComponent from '@/components/page/UsersDetailsFormCompone
 const HomePage = () => {
     const useLogicHookMethods = useLogicHook()
 
-    const { conditionalRenderCases, loanOrApplication, loanOrApplicationNoChangeHandler, validateLoanNoActionHandler, validateOTPActionHandler } = useLogicHookMethods
+    const { conditionalRenderCases, loanOrApplication, loanOrApplicationNoChangeHandler, validateLoanNoActionHandler, validateOTPActionHandler, completeKYCWithoutChangeActionHandler } = useLogicHookMethods
 
     return (
         <div>
@@ -37,8 +37,8 @@ const HomePage = () => {
                                 required
                             />
                             <button className='btn btn-primary margin-left' type="submit"
-                                disabled={conditionalRenderCases.disableLoanNoInput}
-                            >OTP</button>
+                                disabled={conditionalRenderCases.disableLoanNoInput || !loanOrApplication.isAgreeOTPDec}
+                            >GetOtp</button>
                         </div>
                     </form>
 
@@ -58,11 +58,38 @@ const HomePage = () => {
                                 disabled={conditionalRenderCases.disableOTPInput}
                                 onClick={validateLoanNoActionHandler}>Resend</button>
                         </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="isAgreeOTPDec" id="agree-otp"
+                                value={loanOrApplication.isAgreeOTPDec}
+                                onChange={loanOrApplicationNoChangeHandler}
+                                disabled={conditionalRenderCases.disableLoanNoInput}
+                            />
+                            <label className='help-text' htmlFor="agree-otp">
+                                I authorize Shubham Housing finance company ltd. and its representatives to Call,
+                                SMS or communicate via WhatsApp regarding my application.
+                                This consent overrides any registration for DNC / NDNC.
+                                I confirm I am in India, I am a major and a resident of India and
+                                I have read and I accept Shubham Housing finance company ltd's Privacy Policy
+                            </label>
+                        </div>
                     </form>
                 </div>}
 
-
                 <UsersDetailsFormComponent {...useLogicHookMethods} />
+
+                {conditionalRenderCases?.showExitMsg &&
+                    <div className="row">
+                        <div className="col-md-6 col-12">
+                        </div>
+                        <div className="col-md-6 col-12">
+                            <p className='mt-3 mb-3'>Declaration: I hereby declare that my documents are up to date</p>
+                            <button className='btn btn-primary'
+                                sonClick={completeKYCWithoutChangeActionHandler}>
+                                Confirm</button>
+                        </div>
+                    </div>}
+
+
 
                 <UpdateFormComponent {...useLogicHookMethods} />
 

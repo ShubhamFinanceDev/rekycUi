@@ -39,15 +39,18 @@ const conditionalRenderCasesInitialState = {
     showUserDetails: false,
     showActionGroupBtn: true,
     showUserReKYCform: false,
-
     showConfirmModel: false,
-
+    showExitMsg: false,
     showConfirmAddressOTPSection: false,
 
     error: "",
     success: "",
 }
-
+const maskMobileNumber = (mobileNumber) => {
+    const visibleDigits = 4;
+    const maskedDigits = '*'.repeat(mobileNumber.length - visibleDigits);
+    return maskedDigits + mobileNumber.slice(-visibleDigits);
+};
 
 const useLogicHook = () => {
 
@@ -69,7 +72,7 @@ const useLogicHook = () => {
                 return setConditionalRenderCases((state) => ({ ...state, disableOTPInput: true, showUserDetails: true, success: "", error: "" }))
 
             case "SHOW_USER_REKYC_FORM_SECTION":
-                return setConditionalRenderCases((state) => ({ ...state, showUserReKYCform: true, showActionGroupBtn: false }))
+                return setConditionalRenderCases((state) => ({ ...state, showUserReKYCform: true, showActionGroupBtn: false, showExitMsg: false }))
 
             case "ERROR":
                 return setConditionalRenderCases((state) => ({
@@ -85,12 +88,18 @@ const useLogicHook = () => {
             case "SHOW_CONFIRM_ADDRESS_OTP_PREVIEW":
                 return setConditionalRenderCases((state) => ({ ...state, error: "", showConfirmAddressOTPSection: true }))
 
+            case "SHOW_NO_UPDATE_DEC":
+                return setConditionalRenderCases((state) => ({ ...state, showExitMsg: true }))
+
             case "SUCCESS_MSG":
                 setloanOrApplication({ ...loanOrApplicationInitialState });
-                return setConditionalRenderCases({ ...conditionalRenderCasesInitialState, error: "", showInitialForm: false, success: "ReKYC Has been successfully completed!" })
+                return setConditionalRenderCases({ ...conditionalRenderCasesInitialState, error: "", showInitialForm: false, })
             default:
                 return
         }
+    }
+    const ExitChangeHandler = (e) => {
+        updateConditionRenderCases("SHOW_NO_UPDATE_DEC")
     }
 
     const loanOrApplicationNoChangeHandler = (e) => {
@@ -178,7 +187,7 @@ const useLogicHook = () => {
 
             if (data.code === "0000") {
                 updateConditionRenderCases("SHOW_USER_DETAIL_SECTION")
-                setloanOrApplication((state) => ({ ...state, ...data }))
+                setloanOrApplication((state) => ({ ...state, ...data, maskedMobileNo: maskMobileNumber(data.mobileNo) }))
                 Cookies.set("token", data?.jwtToken)
             } else {
                 updateConditionRenderCases("ERROR", { error: "Invalid OTP!" })
@@ -279,7 +288,7 @@ const useLogicHook = () => {
         uploadDocument, loanOrApplication, conditionalRenderCases,
 
         loanOrApplicationNoChangeHandler, uploadDocumentChangeHandler,
-        showOTPSectionActionHandler, confirmAddressActionHandler,
+        showOTPSectionActionHandler, confirmAddressActionHandler, ExitChangeHandler,
 
 
         validateLoanNoActionHandler, validateOTPActionHandler, uploadDocumentActionHandler, completeKYCWithoutChangeActionHandler,

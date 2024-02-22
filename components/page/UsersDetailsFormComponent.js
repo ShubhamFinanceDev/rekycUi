@@ -1,6 +1,6 @@
 import React from 'react'
 
-const UsersDetailsFormComponent = ({ loanOrApplication, conditionalRenderCases, showUpdateFormActionHandler, completeKYCWithoutChangeActionHandler }) => {
+const UsersDetailsFormComponent = ({ loanOrApplication, conditionalRenderCases, showUpdateFormActionHandler, ExitChangeHandler }) => {
     if (conditionalRenderCases.showUserDetails) {
         return (
             <>
@@ -13,7 +13,7 @@ const UsersDetailsFormComponent = ({ loanOrApplication, conditionalRenderCases, 
                         },
                         {
                             label: "Mobile No.",
-                            name: "mobileNo"
+                            name: "maskedMobileNo"
                         },
                         {
                             label: "Address",
@@ -43,12 +43,11 @@ const UsersDetailsFormComponent = ({ loanOrApplication, conditionalRenderCases, 
                         </label>
                         <label className="col-md-6 col-12">
                             <button className='btn btn-primary' onClick={showUpdateFormActionHandler}>Yes</button>
-                            <button className='btn btn-secondary margin-left' onClick={completeKYCWithoutChangeActionHandler}>No</button>
-
+                            <button className='btn btn-secondary margin-left' onClick={ExitChangeHandler}>No</button>
                         </label>
                     </div>}
-
                 </div>
+
             </>)
     } else {
         return <></>
