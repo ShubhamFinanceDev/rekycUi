@@ -9,6 +9,7 @@ import Cookies from 'js-cookie';
 const loanOrApplicationInitialState = {
     loanOrApplicationNo: "",
     otpCode: "",
+    isAgreeOTPDec: false,
 
     loanNo: "",
     mobileNo: "",

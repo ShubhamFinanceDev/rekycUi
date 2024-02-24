@@ -40,9 +40,24 @@ const HomePage = () => {
                                 disabled={conditionalRenderCases.disableLoanNoInput || !loanOrApplication.isAgreeOTPDec}
                             >GetOtp</button>
                         </div>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="isAgreeOTPDec" id="agree-otp"
+                                value={loanOrApplication.isAgreeOTPDec}
+                                onChange={loanOrApplicationNoChangeHandler}
+                                disabled={conditionalRenderCases.disableLoanNoInput || loanOrApplication.isAgreeOTPDec}
+                            />
+                            <label className='help-text' htmlFor="agree-otp">
+                                I authorize Shubham Housing finance company ltd. and its representatives to Call,
+                                SMS or communicate via WhatsApp regarding my application.
+                                This consent overrides any registration for DNC / NDNC.
+                                I confirm I am in India, I am a major and a resident of India and
+                                I have read and I accept Shubham Housing finance company ltd's Privacy Policy
+                            </label>
+                        </div>
                     </form>
 
-                    <form className="row g-2 mb-2" onSubmit={validateOTPActionHandler}>
+                    {!conditionalRenderCases.disableOTPInput ? <form className="row g-2 mb-2" onSubmit={validateOTPActionHandler}>
                         <label className="col-md-6 col-12">One Time Password (OTP)<span /></label>
                         <div className="col-md-6 col-12 d-flex">
                             <input type="password" className='form-control'
@@ -58,21 +73,8 @@ const HomePage = () => {
                                 disabled={conditionalRenderCases.disableOTPInput}
                                 onClick={validateLoanNoActionHandler}>Resend</button>
                         </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="isAgreeOTPDec" id="agree-otp"
-                                value={loanOrApplication.isAgreeOTPDec}
-                                onChange={loanOrApplicationNoChangeHandler}
-                                disabled={conditionalRenderCases.disableLoanNoInput}
-                            />
-                            <label className='help-text' htmlFor="agree-otp">
-                                I authorize Shubham Housing finance company ltd. and its representatives to Call,
-                                SMS or communicate via WhatsApp regarding my application.
-                                This consent overrides any registration for DNC / NDNC.
-                                I confirm I am in India, I am a major and a resident of India and
-                                I have read and I accept Shubham Housing finance company ltd's Privacy Policy
-                            </label>
-                        </div>
-                    </form>
+
+                    </form> : <></>}
                 </div>}
 
                 <UsersDetailsFormComponent {...useLogicHookMethods} />
