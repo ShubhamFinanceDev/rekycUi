@@ -100,52 +100,84 @@ const UpdateFormComponent = ({
                                     )
                                 })}
 
+                                {uploadDocument.documentType === "aadhar" && <div className='mt-3'>
+                                    {[
+                                        {
+                                            label: "Upload Aadhar",
+                                            value: "upload-aadhar"
+                                        },
+                                        {
+                                            label: "Update using Digi Locker",
+                                            value: "digi-locker"
+                                        },
+                                        {
+                                            label: "Offline Aadhar",
+                                            value: "offline-aadhar"
+                                        },
+
+                                    ].map((d, idx) => {
+                                        return (
+                                            <div key={`aadhar_otpion__${idx}`} className='radio-input' >
+                                                <input type="radio" required name="subDocumentType" id={`aop__${idx}`}
+                                                    value={d.value}
+                                                    onChange={uploadDocumentChangeHandler}
+                                                />
+                                                <label htmlFor={`aop__${idx}`}>{d.label}</label>
+                                            </div>
+                                        )
+                                    })}
+
+                                </div>}
+
+
 
 
                                 <div className='mt-2'>
-                                    {!["aadhar", "pan"].includes(uploadDocument.documentType) ? <p className='optionmsg'>Kindly choose Aadhar or Pan</p> : <>
+                                    {!["aadhar", "pan"].includes(uploadDocument.documentType) ?
+                                        <p className='optionmsg'>Kindly choose Aadhar or Pan</p> :
+                                        uploadDocument.subDocumentType !== "upload-aadhar" ? <p className='optionmsg'>Kindly choose Upload Addhar Option</p> :
+                                            <>
+                                                <div className='mt-2'>
+                                                    <label>Mention ID No.<span /></label>
+                                                    <input type="text" className='form-control' required name="documentId" value={uploadDocument.documentId} onChange={uploadDocumentChangeHandler} />
+                                                </div>
+                                                <div className='mt-2'>
+                                                    <label>Upload (Front Side)<span /></label>
+                                                    <input type="file" className='form-control' required name="frontPage" onChange={uploadDocumentChangeHandler} />
+                                                    <p className='helpText'>Only PDF, PNG or JPEG files are accepted for upload.</p>
+                                                </div>
+                                                {uploadDocument.documentType === "aadhar" ? <div className='mt-2'>
+                                                    <label>Upload (Back Side)</label>
+                                                    <input type="file" className='form-control' name="backPage" onChange={uploadDocumentChangeHandler} />
+                                                    <p className='helpText'>Only PDF, PNG or JPEG files are accepted for upload.</p>
+                                                </div> : <></>}
 
-                                        <div className='mt-2'>
-                                            <label>Mention ID No.<span /></label>
-                                            <input type="text" className='form-control' required name="documentId" value={uploadDocument.documentId} onChange={uploadDocumentChangeHandler} />
-                                        </div>
-                                        <div className='mt-2'>
-                                            <label>Upload (Front Side)<span /></label>
-                                            <input type="file" className='form-control' required name="frontPage" onChange={uploadDocumentChangeHandler} />
-                                            <p className='helpText'>Only PDF, PNG or JPEG files are accepted for upload.</p>
-                                        </div>
-                                        {uploadDocument.documentType === "aadhar" ? <div className='mt-2'>
-                                            <label>Upload (Back Side)</label>
-                                            <input type="file" className='form-control' name="backPage" onChange={uploadDocumentChangeHandler} />
-                                            <p className='helpText'>Only PDF, PNG or JPEG files are accepted for upload.</p>
-                                        </div> : <></>}
+                                                {uploadDocument.documentType === "aadhar" ? <>
+                                                    <div class="form-check mt-3">
+                                                        <input class="form-check-input" type="checkbox" name="isAgreeAadharDec" id="agree-aadhar"
+                                                            required
+                                                        />
+                                                        <label className='help-text' htmlFor="agree-aadhar">
+                                                            I, hereby submit voluntarily at my own discretion, self-certified physical copy of Aadhaar letter or downloaded Aadhaar (e-Aadhaar) or Aadhaar secure Quick Response (QR) code or offline electronic Aadhaar XML document as issued by Unique Identification Authority of India (UIDAI) to Shubham Housing finance company ltd  for the purpose of establishing my identification/ address proof, in individual capacity or as an authorized signatory in case of non-individual borrower, as the case may be and; hereby consent to the Company for offline verification of Aadhaar, without authentication, to establish its genuineness through such offline verification mode acceptable as per UIDAI or under any Act or law, from time to time. I, further confirm that the purpose of collecting Aadhaar has been explained to me and the Company has informed that my demographic information and any other information submitted to the Company herewith for offline verification shall not be used for any purpose other than for the purpose of verification, or as per requirements of law.
 
-                                        {uploadDocument.documentType === "aadhar" ? <>
-                                            <div class="form-check mt-3">
-                                                <input class="form-check-input" type="checkbox" name="isAgreeAadharDec" id="agree-aadhar"
-                                                    required
-                                                />
-                                                <label className='help-text' htmlFor="agree-aadhar">
-                                                    I, hereby submit voluntarily at my own discretion, self-certified physical copy of Aadhaar letter or downloaded Aadhaar (e-Aadhaar) or Aadhaar secure Quick Response (QR) code or offline electronic Aadhaar XML document as issued by Unique Identification Authority of India (UIDAI) to Shubham Housing finance company ltd  for the purpose of establishing my identification/ address proof, in individual capacity or as an authorized signatory in case of non-individual borrower, as the case may be and; hereby consent to the Company for offline verification of Aadhaar, without authentication, to establish its genuineness through such offline verification mode acceptable as per UIDAI or under any Act or law, from time to time. I, further confirm that the purpose of collecting Aadhaar has been explained to me and the Company has informed that my demographic information and any other information submitted to the Company herewith for offline verification shall not be used for any purpose other than for the purpose of verification, or as per requirements of law.
+                                                            I, further confirm that the Company has further informed about the following:
 
-                                                    I, further confirm that the Company has further informed about the following:
+                                                            nature of information that will be shared on submission of Aadhaar,
+                                                            the uses to which such information received during offline verification may be put to,
+                                                            Aadhaar number or biometric information will not be collected, used, or stored by the Company,
+                                                            Aadhaar number (first 8 digits) has been redacted or blacked out through appropriate means,
+                                                            this consent will be stored with the Company
+                                                            I, further agree to have been sufficiently informed by the Company about other alternative documents that can be submitted for establishing proof of identification and address.
 
-                                                    nature of information that will be shared on submission of Aadhaar,
-                                                    the uses to which such information received during offline verification may be put to,
-                                                    Aadhaar number or biometric information will not be collected, used, or stored by the Company,
-                                                    Aadhaar number (first 8 digits) has been redacted or blacked out through appropriate means,
-                                                    this consent will be stored with the Company
-                                                    I, further agree to have been sufficiently informed by the Company about other alternative documents that can be submitted for establishing proof of identification and address.
+                                                            I, hereby declares that all the information voluntarily furnished by me is true, correct, and complete. I will not hold the Company or any of its officials responsible in case of any incorrect information is provided by me.
+                                                        </label>
+                                                    </div>
+                                                </> : <></>}
 
-                                                    I, hereby declares that all the information voluntarily furnished by me is true, correct, and complete. I will not hold the Company or any of its officials responsible in case of any incorrect information is provided by me.
-                                                </label>
-                                            </div>
-                                        </> : <></>}
-
-                                        <div className="mt-3 mb-3" >
-                                            <button className='btn btn-secondary' type="submit">Preview</button>
-                                        </div>
-                                    </>}
+                                                <div className="mt-3 mb-3" >
+                                                    <button className='btn btn-secondary' type="submit">Preview</button>
+                                                </div>
+                                            </>}
                                 </div>
                             </form>
 

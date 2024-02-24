@@ -24,6 +24,7 @@ const uploadDocumentInitialState = {
     documentType: "aadhar",
     frontPage: {},
     backPage: {},
+    subDocumentType: "upload-aadhar",
 
     otpCode: "",
     name: "",
@@ -111,14 +112,11 @@ const useLogicHook = () => {
     }
 
     const uploadDocumentChangeHandler = (e) => {
-        const { name, value, files } = e.target;
+        const { name, value, files, type } = e.target;
+        debugger
         const prevState = { ...uploadDocument };
 
         switch (name) {
-            case "documentId":
-                prevState[name] = value;
-                setUploadDocument(prevState);
-                break;
             case "documentType":
                 prevState[name] = value;
                 prevState.frontPage = {}
@@ -126,34 +124,36 @@ const useLogicHook = () => {
                 setUploadDocument(prevState);
                 break;
 
-            case "otpCode":
-                prevState[name] = value;
-                setUploadDocument(prevState);
-                break;
-
             default:
-                let file = files?.[0];
 
-                if (file.type === "application/pdf" || file.type === "image/jpeg" || file.type === "image/png"
-                ) {
-                    updateConditionRenderCases("ERROR", { error: "" })
-                    let Base64Data;
+                if (type == 'file') {
+                    let file = files?.[0];
 
-                    const reader = new FileReader();
-                    reader.onload = function (e) {
-                        const binaryData = e.target.result;
-                        Base64Data = base64.encode(binaryData);
+                    if (file.type === "application/pdf" || file.type === "image/jpeg" || file.type === "image/png"
+                    ) {
+                        updateConditionRenderCases("ERROR", { error: "" })
+                        let Base64Data;
 
-                        prevState[name] = {
-                            base64String: Base64Data,
-                            fileType: file.type,
+                        const reader = new FileReader();
+                        reader.onload = function (e) {
+                            const binaryData = e.target.result;
+                            Base64Data = base64.encode(binaryData);
+
+                            prevState[name] = {
+                                base64String: Base64Data,
+                                fileType: file.type,
+                            };
+                            setUploadDocument(prevState);
                         };
-                        setUploadDocument(prevState);
-                    };
-                    reader.readAsBinaryString(file);
+                        reader.readAsBinaryString(file);
+                    } else {
+                        updateConditionRenderCases("ERROR", { error: "Invalid file type. Please upload a PDF, PNG or JPEG file to continue." })
+                    }
                 } else {
-                    updateConditionRenderCases("ERROR", { error: "Invalid file type. Please upload a PDF, PNG or JPEG file to continue." })
+                    prevState[name] = value;
+                    setUploadDocument(prevState);
                 }
+
                 break;
         }
     };
