@@ -10,22 +10,40 @@ const HomePage = () => {
     const useLogicHookMethods = useLogicHook()
 
     const { conditionalRenderCases, loanOrApplication, loanOrApplicationNoChangeHandler, validateLoanNoActionHandler, validateOTPActionHandler, completeKYCWithoutChangeActionHandler } = useLogicHookMethods
+    const [showError, setShowError] = React.useState(false);
+
+    const handleGetOtpClick = (e) => {
+        e.preventDefault();
+
+        if (loanOrApplication.loanOrApplicationNo.trim() === '' || !loanOrApplication.isAgreeOTPDec) {
+            setShowError(true);
+        } else {
+            setShowError(false);
+            validateLoanNoActionHandler(e);
+        }
+    };
 
     return (
         <div>
+
+
             <header>
                 <img src={env.LOGO} alt="shubham finance logo" className='logo' />
                 <h1>CUSTOMER UPDATION FORM FOR RE KYC</h1>
                 <p>(field marked with * are mandatory)</p>
+                {showError && (
+                    <p className="error-txt">
+                        Please select self-declaration
+                    </p>
+                )}
             </header>
-
 
             <main className='container mt-4'>
                 {conditionalRenderCases?.error && <p className='error-txt'>{conditionalRenderCases.error}</p>}
                 {conditionalRenderCases?.success && <p className='success-txt'>{conditionalRenderCases.success}</p>}
 
                 {conditionalRenderCases?.showInitialForm && <div className='verify-user-cred-container'>
-                    <form className="row g-2 mb-2" onSubmit={validateLoanNoActionHandler}>
+                    <form className="row g-2 mb-2" onSubmit={handleGetOtpClick}>
                         <label className="col-md-6 col-12">Loan/Application No.<span /></label>
 
                         <div className="col-md-6 col-12 d-flex">
@@ -37,15 +55,16 @@ const HomePage = () => {
                                 required
                             />
                             <button className='btn btn-primary margin-left' type="submit"
-                                disabled={conditionalRenderCases.disableLoanNoInput || !loanOrApplication.isAgreeOTPDec}
+                            // disabled={conditionalRenderCases.disableLoanNoInput || !loanOrApplication.isAgreeOTPDec}
                             >GetOtp</button>
+
                         </div>
 
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" name="isAgreeOTPDec" id="agree-otp"
                                 value={loanOrApplication.isAgreeOTPDec}
                                 onChange={loanOrApplicationNoChangeHandler}
-                                disabled={conditionalRenderCases.disableLoanNoInput || loanOrApplication.isAgreeOTPDec}
+                            // disabled={conditionalRenderCases.disableLoanNoInput || loanOrApplication.isAgreeOTPDec}
                             />
                             <label className='help-text' htmlFor="agree-otp">
                                 I authorize Shubham Housing finance company ltd. and its representatives to Call,
@@ -90,15 +109,8 @@ const HomePage = () => {
                                 Confirm</button>
                         </div>
                     </div>}
-
-
-
                 <UpdateFormComponent {...useLogicHookMethods} />
-
             </main>
-
-
-
         </div>
     )
 }
