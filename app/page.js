@@ -64,7 +64,8 @@ const HomePage = () => {
                             <input class="form-check-input" type="checkbox" name="isAgreeOTPDec" id="agree-otp"
                                 value={loanOrApplication.isAgreeOTPDec}
                                 onChange={loanOrApplicationNoChangeHandler}
-                            // disabled={conditionalRenderCases.disableLoanNoInput || loanOrApplication.isAgreeOTPDec}
+                                // disabled={conditionalRenderCases.disableLoanNoInput}
+                                disabled={conditionalRenderCases.disableLoanNoInput || loanOrApplication.isAgreeOTPDec}
                             />
                             <label className='help-text' htmlFor="agree-otp">
                                 I authorize Shubham Housing finance company ltd. and its representatives to Call,

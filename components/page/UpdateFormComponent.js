@@ -1,10 +1,31 @@
-import React from 'react'
+import React, { useState, useRef } from 'react'
 import Modal from 'react-bootstrap/Modal';
 
 
 const UpdateFormComponent = ({
     uploadDocument, conditionalRenderCases, uploadDocumentChangeHandler, uploadDocumentActionHandler, showOTPSectionActionHandler, hideDocumentPreviewActionHandler, confirmAddressActionHandler
 }) => {
+    const [selectedDocumentType, setSelectedDocumentType] = useState(null);
+    const [documentTypeError, setDocumentTypeError] = useState(false);
+    const errorRef = useRef(null);
+
+
+    const handleDocumentTypeChange = (e) => {
+        const selectedType = e.target.value;
+        setSelectedDocumentType(selectedType);
+        uploadDocumentChangeHandler(e);
+        setDocumentTypeError(false);
+    };
+    const handlePreviewClick = () => {
+        if (!selectedDocumentType) {
+            setDocumentTypeError(true);
+            if (errorRef.current) {
+                errorRef.current.scrollIntoView({ behavior: 'smooth' });
+            }
+            return;
+        }
+    };
+
     if (conditionalRenderCases.showUserReKYCform) {
         return (
             <>
@@ -54,6 +75,8 @@ const UpdateFormComponent = ({
                 <div className="user-update-data-container">
 
                     <div className="row g-2 mt-4">
+                        <div ref={errorRef}>
+                            {documentTypeError && <p className="error-txt">Please select options from either Proof of Address or Proof of Identity</p>}</div>
                         <label className='col-md-6 col-12'>Proof of Address (Tick relevant and mention the details)<span /></label>
                         <div className="col-md-6 col-12">
                             <form onSubmit={uploadDocumentActionHandler}>
@@ -98,7 +121,8 @@ const UpdateFormComponent = ({
                                         <div key={`poi__${idx}`} className='radio-input' >
                                             <input type="radio" required name="documentType" id={`pod__${idx}`}
                                                 value={d.value}
-                                                onChange={uploadDocumentChangeHandler}
+                                                onChange={handleDocumentTypeChange}
+                                                checked={selectedDocumentType === d.value}
                                                 disabled={d.disabled}
                                             />
                                             <label htmlFor={`pod__${idx}`}>{d.label}</label>
@@ -125,11 +149,12 @@ const UpdateFormComponent = ({
                                     <div key={`poi__${idx}`} className='radio-input' >
                                         <input
                                             type="radio"
-                                            required
+                                            // required
                                             name="documentType"
                                             id={`poi__${idx}`}
                                             value={d.value}
-                                            onChange={uploadDocumentChangeHandler}
+                                            onChange={handleDocumentTypeChange}
+                                            checked={selectedDocumentType === d.value}
                                         />
                                         <label htmlFor={`poi__${idx}`}>{d.label}</label>
                                     </div>
@@ -219,7 +244,7 @@ const UpdateFormComponent = ({
                                             </> : <></>}
 
                                             <div className="mt-3 mb-3" >
-                                                <button className='btn btn-secondary' type="submit">Preview</button>
+                                                <button className='btn btn-secondary' type="submit" onClick={handlePreviewClick}>Preview</button>
                                             </div>
                                         </>}
                             </div>
