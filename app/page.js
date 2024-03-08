@@ -72,7 +72,7 @@ const HomePage = () => {
                                 SMS or communicate via WhatsApp regarding my application.
                                 This consent overrides any registration for DNC / NDNC.
                                 I confirm I am in India, I am a major and a resident of India and
-                                I have read and I accept Shubham Housing finance company ltd's Privacy Policy
+                                I have read and I accept Shubham Housing finance company ltd&apos;s Privacy Policy
                             </label>
                         </div>
                     </form>
