@@ -136,10 +136,10 @@ const UpdateFormComponent = ({
                 </div>
                 <hr />
                 <div className="row g-2 mt-4">
-                    <label className='col-md-6 col-12'>Proof of Identity (Tick relevant and mention the details)</label>
+                    <label className='col-md-6 col-12'></label>
                     <div className="col-md-6 col-12">
                         <form onSubmit={uploadDocumentActionHandler}>
-                            <div>
+                            {/* <div>
                                 {[
                                     {
                                         label: "Pan Card",
@@ -162,8 +162,8 @@ const UpdateFormComponent = ({
                                 ))}
 
 
-                            </div>
-                            <hr />
+                            </div> */}
+                            {/* <hr /> */}
 
                             <div className="col-md-6 col-12">
                                 {uploadDocument.documentType === "aadhar" && <div className='mt-3'>
