@@ -76,7 +76,7 @@ const UpdateFormComponent = ({
 
                     <div className="row g-2 mt-4">
                         <div ref={errorRef}>
-                            {documentTypeError && <p className="error-txt">Please select options from either Proof of Address or Proof of Identity</p>}</div>
+                            {documentTypeError && <p className="error-txt">Please select options from Proof of Address</p>}</div>
                         <label className='col-md-6 col-12'>Proof of Address (Tick relevant and mention the details)<span /></label>
                         <div className="col-md-6 col-12">
                             <form onSubmit={uploadDocumentActionHandler}>
@@ -222,8 +222,8 @@ const UpdateFormComponent = ({
                                             </div> : <></>}
 
                                             {uploadDocument.documentType === "aadhar" ? <>
-                                                <div class="form-check mt-3">
-                                                    <input class="form-check-input" type="checkbox" name="isAgreeAadharDec" id="agree-aadhar"
+                                                <div className="form-check mt-3">
+                                                    <input className="form-check-input" type="checkbox" name="isAgreeAadharDec" id="agree-aadhar"
                                                         required
                                                     />
                                                     <label className='help-text' htmlFor="agree-aadhar">
