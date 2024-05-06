@@ -1,6 +1,6 @@
 import Loader from "@/components/core/Loader"
 import { Providers } from "@/redux/provider"
-
+import Footer from '@/components/core/Footer'
 
 import "@/style/style.map.scss"
 
@@ -20,7 +20,10 @@ export default function RootLayout({ children }) {
       <body suppressHydrationWarning={true}>
         <Providers>
           <Loader />
-          {children}
+          <div>
+            {children}
+          </div>
+          <Footer />
         </Providers>
       </body>
     </html>
