@@ -257,8 +257,8 @@ const useLogicHook = () => {
 
     const completeKYCWithoutChangeActionHandler = async () => {
         try {
-            const { loanNo } = loanOrApplication
-            const body = { loanNo }
+            const { loanNo, mobileNo } = loanOrApplication
+            const body = { loanNo, mobileNo }
 
             await axios.post(api.disableKycFlag(), body)
             updateConditionRenderCases("SUCCESS_MSG")

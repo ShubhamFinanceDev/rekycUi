@@ -54,14 +54,13 @@ const HomePage = () => {
                                 disabled={conditionalRenderCases.disableLoanNoInput}
                                 required
                             />
-                            <button className='btn btn-primary margin-left' type="submit"
-                            // disabled={conditionalRenderCases.disableLoanNoInput || !loanOrApplication.isAgreeOTPDec}
-                            >GetOtp</button>
+                                      <button className='btn btn-primary margin-left' type="submit" disabled={conditionalRenderCases.disableLoanNoInput || !loanOrApplication.isAgreeOTPDec}>
+GetOtp</button>
 
                         </div>
 
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="isAgreeOTPDec" id="agree-otp"
+                        <div className="form-check">
+                            <input className="form-check-input" type="checkbox" name="isAgreeOTPDec" id="agree-otp"
                                 value={loanOrApplication.isAgreeOTPDec}
                                 onChange={loanOrApplicationNoChangeHandler}
                                 // disabled={conditionalRenderCases.disableLoanNoInput}
