@@ -103,9 +103,9 @@ GetOtp</button>
                         <div className="col-md-6 col-12">
                         </div>
                         <div className="col-md-6 col-12">
-                            <p className='mt-3 mb-3'>Declaration: I/We wish to inform you that there is no change in the KYC information registered with the Shubham Housing Development Finance Co Ltd for the under mentioned Loan Account(s)/Customer ID. I/We have checked our statement of account and find that my/our latest details including Name, Address, Contact Details, PAN & such other KYC details are correctly registered in the Shubham’s records.
+                            <p className='mt-3 mb-3'>Declaration: I/We wish to inform you that there is no change in the KYC information registered with the Shubham Housing Development Finance Co Ltd for the under mentioned Loan Account(s)/Customer ID. I/We have checked our statement of account and find that my/our latest details including Name, Address, Contact Details, PAN & such other KYC details are correctly registered in the Shubham’s records.</p>
  
-                            I/We declare that the details furnished above are true to the best of my/our knowledge/belief.</p>
+                            <p>I/We declare that the details furnished above are true to the best of my/our knowledge/belief.</p>
                             <button className='btn btn-primary'
                                 onClick={completeKYCWithoutChangeActionHandler}>
                                 Confirm</button>
