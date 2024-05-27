@@ -101,7 +101,7 @@ const useLogicHook = () => {
         }
     }
     const ExitChangeHandler = (e) => {
-        setConditionalRenderCases("SHOW_NO_UPDATE_DEC")
+        updateConditionRenderCases("SHOW_NO_UPDATE_DEC")
     }
 
     const loanOrApplicationNoChangeHandler = (e) => {
