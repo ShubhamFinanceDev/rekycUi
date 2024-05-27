@@ -85,7 +85,7 @@ const useLogicHook = () => {
                 return setConditionalRenderCases((state) => ({ ...state, error: "", showConfirmModel: true }))
 
             case "HIDE_DOCUMENT_PREVIEW":
-                return setConditionalRenderCases((state) => ({ ...state, error: "", showConfirmModel: false, showConfirmAddressOTPSection: false }))
+                return setConditionalRenderCases((state) => ({ ...state, error: "", showConfirmModel: false, showConfirmAddressOTPSection: false,success:"Thanks for your confirmation." }))
 
             case "SHOW_CONFIRM_ADDRESS_OTP_PREVIEW":
                 return setConditionalRenderCases((state) => ({ ...state, error: "", showConfirmAddressOTPSection: true }))
