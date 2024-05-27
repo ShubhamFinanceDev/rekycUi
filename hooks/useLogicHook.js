@@ -85,7 +85,7 @@ const useLogicHook = () => {
                 return setConditionalRenderCases((state) => ({ ...state, error: "", showConfirmModel: true }))
 
             case "HIDE_DOCUMENT_PREVIEW":
-                return setConditionalRenderCases((state) => ({ ...state, error: "", showConfirmModel: false, showConfirmAddressOTPSection: false,success:"Thanks for your confirmation." }))
+                return setConditionalRenderCases((state) => ({ ...state, error: "", showConfirmModel: false, showConfirmAddressOTPSection: false }))
 
             case "SHOW_CONFIRM_ADDRESS_OTP_PREVIEW":
                 return setConditionalRenderCases((state) => ({ ...state, error: "", showConfirmAddressOTPSection: true }))
@@ -102,6 +102,7 @@ const useLogicHook = () => {
     }
     const ExitChangeHandler = (e) => {
         updateConditionRenderCases("SHOW_NO_UPDATE_DEC")
+        return updateConditionRenderCases ({ ...state, showExitMsg: true, success:"Thanks for your confirmation." })
     }
 
     const loanOrApplicationNoChangeHandler = (e) => {
