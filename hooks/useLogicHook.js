@@ -91,7 +91,7 @@ const useLogicHook = () => {
                 return setConditionalRenderCases((state) => ({ ...state, error: "", showConfirmAddressOTPSection: true }))
 
             case "SHOW_NO_UPDATE_DEC":
-                return setConditionalRenderCases((state) => ({ ...state, showExitMsg: true }))
+                return setConditionalRenderCases((state) => ({ ...state, showExitMsg: true, success:"Thanks for your confirmation." }))
 
             case "SUCCESS_MSG":
                 setloanOrApplication({ ...loanOrApplicationInitialState });
