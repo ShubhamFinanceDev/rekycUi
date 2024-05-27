@@ -102,7 +102,6 @@ const useLogicHook = () => {
     }
     const ExitChangeHandler = (e) => {
         updateConditionRenderCases("SHOW_NO_UPDATE_DEC")
-        return updateConditionRenderCases ({ ...state, showExitMsg: true, success:"Thanks for your confirmation." })
     }
 
     const loanOrApplicationNoChangeHandler = (e) => {
