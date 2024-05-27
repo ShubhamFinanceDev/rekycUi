@@ -261,7 +261,7 @@ const useLogicHook = () => {
             const body = { loanNo, mobileNo }
 
             await axios.post(api.disableKycFlag(), body)
-            updateConditionRenderCases("SUCCESS_MSG")
+            updateConditionRenderCases("SHOW_NO_UPDATE_DEC")
 
         } catch (error) {
             updateConditionRenderCases("ERROR", { error: error?.response?.data || error.message })
