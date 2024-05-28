@@ -91,11 +91,11 @@ const useLogicHook = () => {
                 return setConditionalRenderCases((state) => ({ ...state, error: "", showConfirmAddressOTPSection: true }))
 
             case "SHOW_NO_UPDATE_DEC":
-                return setConditionalRenderCases((state) => ({ ...state, showExitMsg: true, success:"Thanks for your confirmation." }))
+                return setConditionalRenderCases((state) => ({ ...state, showExitMsg: true, success:"Thanks for your confirming your KYCs details." }))
 
             case "SUCCESS_MSG":
                 setloanOrApplication({ ...loanOrApplicationInitialState });
-                return setConditionalRenderCases({ ...conditionalRenderCasesInitialState, error: "", showInitialForm: false, success: "Thanks For submitting your Rekyc document" })
+                return setConditionalRenderCases({ ...conditionalRenderCasesInitialState, error: "", showInitialForm: false, success: "Thanks for submitting KYCs document for updation, We will review the same and confirm you within 10 working days." })
             default:
                 return
         }

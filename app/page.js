@@ -54,8 +54,8 @@ const HomePage = () => {
                                 disabled={conditionalRenderCases.disableLoanNoInput}
                                 required
                             />
-                                      <button className='btn btn-primary margin-left' type="submit" disabled={conditionalRenderCases.disableLoanNoInput || !loanOrApplication.isAgreeOTPDec}>
-GetOtp</button>
+                                      {/* <button className='btn btn-primary margin-left' type="submit" disabled={conditionalRenderCases.disableLoanNoInput || !loanOrApplication.isAgreeOTPDec}>
+GetOtp</button> */}
 
                         </div>
 
@@ -73,6 +73,8 @@ GetOtp</button>
                                 I confirm I am in India, I am a major and a resident of India and
                                 I have read and I accept Shubham Housing finance company ltd&apos;s Privacy Policy
                             </label>
+                            <button className='btn btn-primary margin-left' type="submit" disabled={conditionalRenderCases.disableLoanNoInput || !loanOrApplication.isAgreeOTPDec}>
+GetOtp</button>
                         </div>
                     </form>
 
