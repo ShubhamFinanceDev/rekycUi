@@ -91,11 +91,15 @@ const useLogicHook = () => {
                 return setConditionalRenderCases((state) => ({ ...state, error: "", showConfirmAddressOTPSection: true }))
 
             case "SHOW_NO_UPDATE_DEC":
-                return setConditionalRenderCases((state) => ({ ...state, showExitMsg: true, success:"Thanks for your confirming your KYCs details." }))
+                return setConditionalRenderCases((state) => ({ ...state, showExitMsg: true, success: "" }))
 
             case "SUCCESS_MSG":
                 setloanOrApplication({ ...loanOrApplicationInitialState });
                 return setConditionalRenderCases({ ...conditionalRenderCasesInitialState, error: "", showInitialForm: false, success: "Thanks for submitting KYCs document for updation, We will review the same and confirm you within 10 working days." })
+
+            case "NOCHANGE_SUCCESS_MSG":
+                setloanOrApplication({ ...loanOrApplicationInitialState });
+                return setConditionalRenderCases({ ...conditionalRenderCasesInitialState, error: "", showInitialForm: false, success: "Thanks for your confirming your KYCs details" })
             default:
                 return
         }
@@ -261,7 +265,7 @@ const useLogicHook = () => {
             const body = { loanNo, mobileNo }
 
             await axios.post(api.disableKycFlag(), body)
-            updateConditionRenderCases("SUCCESS_MSG")
+            updateConditionRenderCases("NOCHANGE_SUCCESS_MSG")
 
         } catch (error) {
             updateConditionRenderCases("ERROR", { error: error?.response?.data || error.message })
