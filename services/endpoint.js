@@ -1,8 +1,8 @@
 export const api = {
-    requestOTP: () => `/userKyc/sendOtp`,
-    validateOTP: () => `/userKyc/otpVerification`,
+    requestOTP: () => `/userKyc/send-otp`,
+    validateOTP: () => `/userKyc/otp-verification`,
 
-    uploadDocument: () => `/shubham/addressPreview`,
-    confirmAddressUpdate: () => `/shubham/updateAddress`,
+    uploadDocument: () => `/shubham/upload-preview`,
+    confirmAddressUpdate: () => `/shubham/upload-kyc`,
     disableKycFlag: () => `/shubham/disable-kyc-flag`,
 }
