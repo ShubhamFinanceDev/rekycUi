@@ -41,7 +41,7 @@ const UsersDetailsFormComponent = ({ loanOrApplication, conditionalRenderCases, 
                     {conditionalRenderCases.showActionGroupBtn && <div className="row g-2 mt-4" >
                         <label className="col-md-6 col-12"><p>Do you want update Rekyc</p>
                         </label>
-                        <label className="col-md-6 col-12 mt-3">
+                        <label className="col-md-6 col-12 mb-3">
                             <button className='btn btn-primary' onClick={showUpdateFormActionHandler}>Yes</button>
                             <button className='btn btn-secondary margin-left' onClick={ExitChangeHandler}>No</button>
                         </label>
