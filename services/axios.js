@@ -3,6 +3,7 @@ import Cookies from 'js-cookie';
 
 import store from '@/redux/store';
 import { startLoaderAct, stopLoaderAct } from '@/redux/slice/loader.slice';
+import { removeUserCookies } from '@/hooks/helper/cookies';
 
 
 const request = axios.create({
