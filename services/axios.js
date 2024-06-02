@@ -31,6 +31,13 @@ request.interceptors.response.use(
     },
     (error) => {
         store.dispatch(stopLoaderAct())
+ 
+        const status = error?.response?.status || 400
+        const { data: { message = "" } } = error?.response
+        if (status === 401 && message === "Unauthorized!") {
+            removeUserCookies();
+            // incase of Unauthorized api call redirect user to sign in & remove all data from redux & cookies
+        }
         return Promise.reject(error);
     }
 )
