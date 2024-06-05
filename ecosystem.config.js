@@ -22,7 +22,7 @@ module.exports = {
 
         NODE_ENV: 'production',
 
-        PORT: 3000
+        PORT: 4000
 
       },
 
