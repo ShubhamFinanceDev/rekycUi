@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     env: {
-        BASE_URL: "http://10.12.12.39:8070"
+        BASE_URL: "https://152.67.24.187:8443"
        
     }
 }
