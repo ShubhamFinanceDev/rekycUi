@@ -4,7 +4,7 @@ module.exports = {
 
     {
 
-      name: 'next-app',
+      name: 'Rekyc-app',
 
       script: 'node_modules/next/dist/bin/next',
 
@@ -22,7 +22,7 @@ module.exports = {
 
         NODE_ENV: 'production',
 
-        PORT: 3000
+        PORT: 4000
 
       },
 
