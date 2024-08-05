@@ -13,8 +13,8 @@ const request = axios.create({
 request.interceptors.request.use(
     (config) => {
         store.dispatch(startLoaderAct())
-        const token = Cookies.get("token");
-        if (token) {
+        const isWhiteListed = config.url.includes("userKyc")
+        if (token && !isWhiteListed) {
             config.headers.Authorization = "shubham " + token
         }
         return config;
