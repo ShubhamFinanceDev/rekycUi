@@ -3,7 +3,9 @@ module.exports = {
   apps: [
 
     {
+
       name: 'rekyc-app',
+
       script: 'node_modules/next/dist/bin/next',
 
       args: 'start',
