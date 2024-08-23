@@ -66,7 +66,7 @@ const useLogicHook = () => {
             case "ENABLE_OTP_INPUT":
                 return setConditionalRenderCases((state) => ({
                     ...state, disableOTPInput: false, disableLoanNoInput: true,
-                    success: `OTP sent on Registered Mobile No. ${option.mobile}`,
+                    success: `OTP sent on Registered Mobile No. ${maskMobileNumber(option.mobile)}`,
                     error: ""
                 }))
 
