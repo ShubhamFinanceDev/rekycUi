@@ -97,3 +97,26 @@ main {
   margin-left: 25%;
   margin-top: 20px;
 }
+
+.custom-modal-dialog {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh; 
+  margin: 0 auto; 
+}
+
+@media (max-width: 576px) { 
+  .custom-modal-dialog {
+      width: 80%; /* Adjust width for mobile devices */
+      max-width: none;
+  }
+
+  .modal-body {
+      padding: 1rem; /* Adjust padding for mobile */
+  }
+
+  .modal-header {
+      padding: 1rem; /* Adjust header padding */
+  }
+}
