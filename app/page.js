@@ -25,18 +25,23 @@ const HomePage = () => {
 
     return (
         <div>
-
-
-            <header>
-                <img src={env.LOGO} alt="shubham finance logo" className='logo' />
-                <h1>CUSTOMER UPDATION FORM FOR RE KYC</h1>
-                <p>(field marked with * are mandatory)</p>
+              <header className="bank-header">
+                <div className="bank-header-content">
+                  <div className="logo-container">
+                    <img src={env.LOGO} alt="Shubham Finance logo" className="logo" />
+                  </div>
+                  <div className="title-container">
+                    <h1>CUSTOMER UPDATION FORM FOR RE KYC</h1>
+                    <p className="mandatory-note">(Fields marked with * are mandatory)</p>
+                  </div>
+                </div>
                 {showError && (
-                    <p className="error-txt">
-                        Please select self-declaration
-                    </p>
+                  <p className="error-txt">
+                    Please select self-declaration
+                  </p>
                 )}
-            </header>
+              </header>                            
+
 
             <main className='container mt-4'>
                 {conditionalRenderCases?.error && <p className='error-txt'>{conditionalRenderCases.error}</p>}
@@ -44,9 +49,9 @@ const HomePage = () => {
 
                 {conditionalRenderCases?.showInitialForm && <div className='verify-user-cred-container'>
                     <form className="row g-2 mb-2" onSubmit={handleGetOtpClick}>
-                        <label className="col-md-6 col-12">Loan/Application No.<span /></label>
+                        <label className="col-md-2 col-12">Loan/Application No.<span /></label>
 
-                        <div className="col-md-6 col-12 d-flex">
+                        <div className="col-md-10 col-12 d-flex">
                             <input type="text" className='form-control'
                                 name="loanOrApplicationNo"
                                 value={loanOrApplication.loanOrApplicationNo}
@@ -60,15 +65,15 @@ GetOtp</button> */}
                         </div>
 
                         <div className="form-check">
-                            <input className="form-check-input" type="checkbox" name="isAgreeOTPDec" id="agree-otp"
+                            <input className="form-check-input  mt-2" type="checkbox" name="isAgreeOTPDec" id="agree-otp"
                                 value={loanOrApplication.isAgreeOTPDec}
                                 onChange={loanOrApplicationNoChangeHandler}
                                 // disabled={conditionalRenderCases.disableLoanNoInput}
                                 disabled={conditionalRenderCases.disableLoanNoInput || loanOrApplication.isAgreeOTPDec}
                             />
-                            <label className='help-text' htmlFor="agree-otp">
+                            <label className='help-text mt-2' htmlFor="agree-otp">
                                 I authorize Shubham Housing finance company ltd. and its representatives to Call,
-                                SMS or communicate via WhatsApp regarding my application.
+                                SMS or communicate via WhatsApp regarding my application.<br/>
                                 This consent overrides any registration for DNC / NDNC.
                                 I confirm I am in India, I am a major and a resident of India and
                                 I have read and I accept Shubham Housing finance company ltd&apos;s Privacy Policy

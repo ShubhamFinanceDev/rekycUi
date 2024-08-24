@@ -1,27 +1,55 @@
-header {
+.bank-header {
+  background-color: #044c8c;
+  padding: 10px 0;
+  border-bottom: 4px solid #f58224; 
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.bank-header-content {
   display: flex;
-  justify-content: center;
-  flex-direction: column;
   align-items: center;
-  width: 100%;
+  justify-content: space-between;
+  max-width: 1500px;
+  margin: 0 ;
+  padding: 0 20px;
+}
 
-  .logo {
-    height: 10rem;
-  }
+.logo-container {
+  flex-shrink: 0;
+}
 
-  h1 {
-    font-weight: 600;
-    font-size: 1.25rem;
-    text-align: center;
-    margin-bottom: 0.5rem;
-  }
+.logo {
+  max-width: 5rem;
+  height: auto;
+}
+
+.title-container {
+  flex-grow: 1;
+  text-align: center;
+}
+
+h1 {
+  font-size: 26px;
+  color: #ffffff;
+  margin: 0;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.mandatory-note {
+  font-size: 14px;
+  color: #ffffff;
+  margin-top: 5px;
+  font-style: italic;
 }
 
 .error-txt {
-  color: red;
+  color: #ff4c4c;
+  font-size: 14px;
+  margin-top: 10px;
   text-align: center;
-  margin-bottom: 1rem;
 }
+
 .success-txt {
   color: green;
   text-align: center;
