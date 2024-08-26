@@ -59,6 +59,7 @@ const useLogicHook = () => {
     const [conditionalRenderCases, setConditionalRenderCases] = useState({ ...conditionalRenderCasesInitialState })
     const [loanOrApplication, setloanOrApplication] = useState({ ...loanOrApplicationInitialState })
     const [uploadDocument, setUploadDocument] = useState({ ...uploadDocumentInitialState })
+    const [otpRequested, setOtpRequested] = useState(false); 
 
 
     const updateConditionRenderCases = (conditionCase = "ERROR", option = {}) => {
@@ -173,6 +174,7 @@ const useLogicHook = () => {
                 const { otpCode, mobile } = data
                 setloanOrApplication((state) => ({ ...state, otpCode, mobileNo: mobile }))
                 updateConditionRenderCases("ENABLE_OTP_INPUT", { mobile })
+                setOtpRequested(true)
             } else {
                 updateConditionRenderCases("ERROR", { error: "Invalid Loan/Application No. Given!" })
             }
@@ -290,7 +292,7 @@ const useLogicHook = () => {
     }
 
     return ({
-        uploadDocument, loanOrApplication, conditionalRenderCases,
+        uploadDocument, loanOrApplication, conditionalRenderCases,otpRequested,
 
         loanOrApplicationNoChangeHandler, uploadDocumentChangeHandler,
         showOTPSectionActionHandler, confirmAddressActionHandler, ExitChangeHandler,

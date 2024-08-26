@@ -9,9 +9,9 @@ import UsersDetailsFormComponent from '@/components/page/UsersDetailsFormCompone
 const HomePage = () => {
     const useLogicHookMethods = useLogicHook()
 
-    const { conditionalRenderCases, loanOrApplication, loanOrApplicationNoChangeHandler, validateLoanNoActionHandler, validateOTPActionHandler, completeKYCWithoutChangeActionHandler } = useLogicHookMethods
+    const { conditionalRenderCases,otpRequested, loanOrApplication, loanOrApplicationNoChangeHandler, validateLoanNoActionHandler, validateOTPActionHandler, completeKYCWithoutChangeActionHandler } = useLogicHookMethods
     const [showError, setShowError] = React.useState(false);
-    const [otpRequested, setOtpRequested] = React.useState(false);  
+
 
     const handleGetOtpClick = (e) => {
         e.preventDefault();
@@ -21,7 +21,6 @@ const HomePage = () => {
         } else {
             setShowError(false);
             validateLoanNoActionHandler(e);
-            setOtpRequested(true);
         }
     };
 

@@ -175,7 +175,7 @@ const UpdateFormComponent = ({
                                         value: "pan"
                                     },
                                     { label: "Voter Id Card", 
-                                        value: "voterId" 
+                                        value: "voter" 
                                       },
                                 ].map((d, idx) => (
                                     <div key={`poi__${idx}`} className='radio-input' >
