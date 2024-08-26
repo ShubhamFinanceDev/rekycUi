@@ -56,7 +56,7 @@ const UpdateFormComponent = ({
         return (
             <>
 
-                <Modal show={conditionalRenderCases.showConfirmModel} onHide={hideDocumentPreviewActionHandler}>
+                <Modal show={conditionalRenderCases.showConfirmModel} onHide={hideDocumentPreviewActionHandler}  dialogClassName="custom-modal-dialog">
                     <Modal.Header closeButton>
                         <Modal.Title>Confirm your details</Modal.Title>
                     </Modal.Header>
@@ -215,10 +215,11 @@ const UpdateFormComponent = ({
                                 )}
                             </div >
                             <div className='mt-2'>
-                                {!["aadhar", "pan","voter"].includes(uploadDocument.documentType) ?
-                                    <p className='optionmsg'>Kindly choose Aadhar or Pan</p> :
-                                    uploadDocument.subDocumentType !== "upload-aadhar" ? <p className='optionmsg'>Kindly choose Upload Addhar Option</p> :
-                                        <>
+                                  {!["aadhar", "pan", "voter"].includes(uploadDocument.documentType) ?
+                                        <p className='optionmsg'>Kindly choose Aadhar, Pan, or Voter ID</p> :
+                                        (uploadDocument.subDocumentType !== "upload-aadhar" && uploadDocument.subDocumentType !== "upload-pan" && uploadDocument.subDocumentType !== "upload-voter") ?
+                                            <p className='optionmsg'>Kindly choose Upload Aadhar, Pan, or Voter ID Option</p> :
+                                            <>
                                             <div className='mt-2'>
                                                 <label>Document ID No.<span /></label>
                                                 <input type="text" className='form-control' required name="documentId" value={uploadDocument.documentId} onChange={uploadDocumentChangeHandler} />

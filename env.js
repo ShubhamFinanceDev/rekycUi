@@ -1,3 +1,3 @@
 export const env = {
-    LOGO: "/img/logo.jpg"
+    LOGO: "/img/logo.png"
 }

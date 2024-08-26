@@ -6,9 +6,14 @@ const Footer = () => {
     let year = new Date()
 
     return (
-        <footer>
+        <>
+        <span className="footer-span" />
+        <footer className="footer">
+          <p>
             Copyright@{year.getFullYear()} Shubham Housing Finance. All Rights Reserved.
-        </footer>
+            </p>
+      </footer>
+    </>
     )
 }
 
