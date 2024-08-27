@@ -62,8 +62,8 @@ const UsersDetailsFormComponent = ({ loanOrApplication, conditionalRenderCases, 
                  <div className="row g-2 mt-4">
                     <label className="col-md-6 col-12"><p>Do you want to update Rekyc ?</p></label>
                     <div className="col-md-6 col-12 d-flex justify-content-start">
-                       <button className='btn btn-primary me-2' onClick={showUpdateFormActionHandler}>Yes</button>
-                       <button className='btn btn-secondary' onClick={ExitChangeHandler}>No</button>
+                       <button className='btn btn-primary me-2 mb-3' onClick={showUpdateFormActionHandler}>Yes</button>
+                       <button className='btn btn-secondary mb-3' onClick={ExitChangeHandler}>No</button>
                     </div>
                  </div>}
 

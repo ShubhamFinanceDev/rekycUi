@@ -201,7 +201,7 @@ const UpdateFormComponent = ({
                             </div> 
                              <hr /> 
 
-                             <div className="col-md-6 col-12">
+                             <div className="row">
                                 {["aadhar", "pan", "voterId"].includes(uploadDocument.documentType) && (
                                     <div className='mt-3'>
                                         <label className='col-md-6 col-12'>Upload Process<span /></label>
