@@ -24,6 +24,10 @@ const UsersDetailsFormComponent = ({ loanOrApplication, conditionalRenderCases, 
                             name: "aadharNo"
                         },
                         {
+                            label: "Voter Id.",
+                            name: "voterId"
+                        },
+                        {
                             label: "Address.",
                             name: "address",
                         },
@@ -54,13 +58,14 @@ const UsersDetailsFormComponent = ({ loanOrApplication, conditionalRenderCases, 
                     })}
 
                 </div>
-                     {conditionalRenderCases.showActionGroupBtn && 
-                     <div className="row g-2 mt-4" >
-                        <label className="col-md-6 col-12"><p>Do you want update Rekyc</p>
-                        </label>
-                            <button className='btn btn-primary col-md-1 col-12' onClick={showUpdateFormActionHandler}>Yes</button>
-                            <button className='btn btn-secondary margin-left col-md-1 col-12' onClick={ExitChangeHandler}>No</button>
-                    </div>}
+                {conditionalRenderCases.showActionGroupBtn && 
+                 <div className="row g-2 mt-4">
+                    <label className="col-md-6 col-12"><p>Do you want to update Rekyc ?</p></label>
+                    <div className="col-md-6 col-12 d-flex justify-content-start">
+                       <button className='btn btn-primary me-2' onClick={showUpdateFormActionHandler}>Yes</button>
+                       <button className='btn btn-secondary' onClick={ExitChangeHandler}>No</button>
+                    </div>
+                 </div>}
 
             </>)
     } else {

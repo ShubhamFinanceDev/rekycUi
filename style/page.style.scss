@@ -122,3 +122,77 @@ main {
 .textarea-like {
   height: 84px;
 }
+
+
+.radio-input-inline {
+  display: inline-block;
+  padding: 4px 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+  cursor: pointer;
+  text-align: left;
+  margin: 3px;
+}
+
+.radio-input-inline input {
+  margin-right: 5px; 
+  position: relative;
+  top: -1px;
+}
+
+.radio-input-inline:hover {
+  border-color: #007bff; 
+}
+
+.radio-input-inline input:checked + label {
+  color: #007bff; 
+}
+
+// .radio-input-inline input:checked + label::before {
+//   border-color: #007bff;
+// }
+
+.radio-input-inline input:checked {
+  border-color: #007bff;
+}
+
+.radio-input-inline input[type="radio"] + label::after {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 1em;
+  height: 1em;
+  border: 1px solid #007bff;
+  border-radius: 50%;
+  outline: none;
+  cursor: pointer;
+  margin-right: 10px;
+  position: relative;
+}
+
+.radio-input-inline input[type="radio"]:checked::after {
+  content: '';
+  display: block;
+  width: 0.5em;
+  height: 0.5em;
+  border-radius: 50%;
+  border-color: #007bff;
+  position: absolute;
+  top: 0.25em;
+  left: 0.25em;
+}
+
+.radio-input-inline label {
+  cursor: pointer;
+  margin: 0;
+}
+
+.radio-options-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+
+
+

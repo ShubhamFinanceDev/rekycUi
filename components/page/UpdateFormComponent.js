@@ -45,7 +45,11 @@ const UpdateFormComponent = ({
                     { label: "Update using Digi Locker", value: "digi-locker", disabled: true },
                 ];
             default:
-                return [];
+                return [
+                    { label: "Upload Aadhar", value: "upload-aadhar" },
+                    { label: "Update using Digi Locker", value: "digi-locker", disabled: true },
+                    { label: "Offline Aadhar", value: "offline-aadhar", disabled: true },
+                ];;
         }
     };
 
@@ -100,7 +104,7 @@ const UpdateFormComponent = ({
                 <hr />
                 <div className="user-update-data-container">
 
-                    <div className="row g-2 mt-4">
+                    <div className="row g-2">
                         <div ref={errorRef}>
                             {documentTypeError && <p className="error-txt">Please select options from Proof of Address</p>}</div>
                         <label className='col-md-6 col-12'>Proof of Address (Tick relevant and mention the details)<span /></label>
@@ -147,7 +151,7 @@ const UpdateFormComponent = ({
 
                                 ].map((d, idx) => {
                                     return (
-                                        <div key={`poi__${idx}`} className='radio-input' >
+                                        <div key={`poi__${idx}`} className='radio-input-inline' >
                                             <input type="radio" required name="documentType" id={`pod__${idx}`}
                                                 value={d.value}
                                                 onChange={handleDocumentTypeChange}
@@ -164,7 +168,7 @@ const UpdateFormComponent = ({
                     </div>
                 </div>
                 <hr />
-                <div className="row g-2 mt-4">
+                <div className="row g-2 ">
                     <label className='col-md-6 col-12'>Proof of Identity<span /></label>
                     <div className="col-md-6 col-12">
                         <form onSubmit={uploadDocumentActionHandler}>
@@ -178,7 +182,7 @@ const UpdateFormComponent = ({
                                         value: "voterId" 
                                       },
                                 ].map((d, idx) => (
-                                    <div key={`poi__${idx}`} className='radio-input' >
+                                    <div key={`poi__${idx}`} className='radio-input-inline'>
                                         <input
                                             type="radio"
                                             // required
@@ -201,8 +205,9 @@ const UpdateFormComponent = ({
                                 {["aadhar", "pan", "voterId"].includes(uploadDocument.documentType) && (
                                     <div className='mt-3'>
                                         <label className='col-md-6 col-12'>Upload Process<span /></label>
+                                        <div className="radio-options-container d-flex">
                                         {renderUploadOptions().map((d, idx) => (
-                                            <div key={`upload_option__${idx}`} className='radio-input'>
+                                            <div key={`upload_option__${idx}`} className='radio-input-inline'>
                                                 <input type="radio" required name="subDocumentType" id={`upload_option__${idx}`}
                                                     value={d.value}
                                                     onChange={uploadDocumentChangeHandler}
@@ -211,6 +216,7 @@ const UpdateFormComponent = ({
                                                 <label htmlFor={`upload_option__${idx}`}>{d.label}</label>
                                             </div>
                                         ))}
+                                        </div>
                                     </div>
                                 )}
                             </div >
@@ -231,7 +237,7 @@ const UpdateFormComponent = ({
                                             </div>
                                             {uploadDocument.documentType === "aadhar" || uploadDocument.documentType === "voterId" ? <div className='mt-2'>
                                                 <label>Upload (Back Side)</label>
-                                                <input type="file" className='form-control' name="backPage" onChange={uploadDocumentChangeHandler} />
+                                                <input type="file" className='form-control' required name="backPage" onChange={uploadDocumentChangeHandler} />
                                                 <p className='helpText'>Only PDF, PNG or JPEG files are accepted for upload.</p>
                                             </div> : <></>}
 

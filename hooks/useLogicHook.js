@@ -118,7 +118,6 @@ const useLogicHook = () => {
 
     const uploadDocumentChangeHandler = (e) => {
         const { name, value, files, type } = e.target;
-        debugger
         const prevState = { ...uploadDocument };
 
         switch (name) {
