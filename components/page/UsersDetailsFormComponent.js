@@ -24,8 +24,8 @@ const UsersDetailsFormComponent = ({ loanOrApplication, conditionalRenderCases, 
                             name: "aadharNo"
                         },
                         {
-                            label: "Voter Id.",
-                            name: "voterId"
+                            label: "Voter Id No.",
+                            name: "voterIdNo"
                         },
                         {
                             label: "Address.",
