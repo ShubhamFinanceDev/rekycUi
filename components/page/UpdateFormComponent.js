@@ -26,11 +26,41 @@ const UpdateFormComponent = ({
         }
     };
 
+    const renderUploadOptions = () => {
+        switch (selectedDocumentType) {
+            case "aadhar":
+                return [
+                    { label: "Upload Aadhar", value: "upload-aadhar" },
+                    { label: "Update using Digi Locker", value: "digi-locker", disabled: true },
+                    { label: "Offline Aadhar", value: "offline-aadhar", disabled: true },
+                ];
+            case "pan":
+                return [
+                    { label: "Upload Pan", value: "upload-pan" },
+                    { label: "Update using Digi Locker", value: "digi-locker", disabled: true },
+                ];
+            case "voterId":
+                return [
+                    { label: "Upload Voter ID", value: "upload-voter" },
+                    { label: "Update using Digi Locker", value: "digi-locker", disabled: true },
+                ];
+            default:
+                return [
+                    { label: "Upload Aadhar", value: "upload-aadhar" },
+                    { label: "Update using Digi Locker", value: "digi-locker", disabled: true },
+                    { label: "Offline Aadhar", value: "offline-aadhar", disabled: true },
+                ];;
+        }
+    };
+
+
+
+
     if (conditionalRenderCases.showUserReKYCform) {
         return (
             <>
 
-                <Modal show={conditionalRenderCases.showConfirmModel} onHide={hideDocumentPreviewActionHandler}>
+                <Modal show={conditionalRenderCases.showConfirmModel} onHide={hideDocumentPreviewActionHandler}  dialogClassName="custom-modal-dialog">
                     <Modal.Header closeButton>
                         <Modal.Title>Confirm your details</Modal.Title>
                     </Modal.Header>
@@ -74,7 +104,7 @@ const UpdateFormComponent = ({
                 <hr />
                 <div className="user-update-data-container">
 
-                    <div className="row g-2 mt-4">
+                    <div className="row g-2">
                         <div ref={errorRef}>
                             {documentTypeError && <p className="error-txt">Please select options from Proof of Address</p>}</div>
                         <label className='col-md-6 col-12'>Proof of Address (Tick relevant and mention the details)<span /></label>
@@ -89,6 +119,9 @@ const UpdateFormComponent = ({
                                     // {
                                     //     label: "PAN Card",
                                     //     value: "pan"
+                                    // },
+                                    // { label: "Voter Id Card", 
+                                    //   value: "voterId" 
                                     // },
                                     {
                                         label: "Passport",
@@ -118,7 +151,7 @@ const UpdateFormComponent = ({
 
                                 ].map((d, idx) => {
                                     return (
-                                        <div key={`poi__${idx}`} className='radio-input' >
+                                        <div key={`poi__${idx}`} className='radio-input-inline' >
                                             <input type="radio" required name="documentType" id={`pod__${idx}`}
                                                 value={d.value}
                                                 onChange={handleDocumentTypeChange}
@@ -135,18 +168,22 @@ const UpdateFormComponent = ({
                     </div>
                 </div>
                 <hr />
-                <div className="row g-2 mt-4">
-                    <label className='col-md-6 col-12'></label>
+                <div className="row g-2 ">
+                    <div className='col-md-6 col-12'></div>
+                    {/* <label className='col-md-6 col-12'>Proof of Identity<span /></label> */}
                     <div className="col-md-6 col-12">
                         <form onSubmit={uploadDocumentActionHandler}>
-                            {/* <div>
+                         {/* <div>
                                 {[
                                     {
                                         label: "Pan Card",
                                         value: "pan"
                                     },
+                                    { label: "Voter Id Card", 
+                                        value: "voterId" 
+                                      },
                                 ].map((d, idx) => (
-                                    <div key={`poi__${idx}`} className='radio-input' >
+                                    <div key={`poi__${idx}`} className='radio-input-inline'>
                                         <input
                                             type="radio"
                                             // required
@@ -162,50 +199,34 @@ const UpdateFormComponent = ({
                                 ))}
 
 
-                            </div> */}
-                            {/* <hr /> */}
+                            </div>  */}
+                             {/* <hr />  */}
 
-                            <div className="col-md-6 col-12">
-                                {uploadDocument.documentType === "aadhar" && <div className='mt-3'>
-                                    <label className='col-md-6 col-12'>Upload Process<span /></label>
-
-                                    {[
-                                        {
-                                            label: "Upload Aadhar",
-                                            value: "upload-aadhar"
-                                        },
-                                        {
-                                            label: "Update using Digi Locker",
-                                            value: "digi-locker",
-                                            disabled: true
-                                        },
-                                        {
-                                            label: "Offline Aadhar",
-                                            value: "offline-aadhar",
-                                            disabled: true
-                                        },
-
-                                    ].map((d, idx) => {
-                                        return (
-                                            <div key={`aadhar_otpion__${idx}`} className='radio-input' >
-                                                <input type="radio" required name="subDocumentType" id={`aop__${idx}`}
+                             <div className="row">
+                                {["aadhar", "pan", "voterId"].includes(uploadDocument.documentType) && (
+                                    <div className='mt-3'>
+                                        <label className='col-md-6 col-12'>Upload Process<span /></label>
+                                        <div className="radio-options-container d-flex">
+                                        {renderUploadOptions().map((d, idx) => (
+                                            <div key={`upload_option__${idx}`} className='radio-input-inline'>
+                                                <input type="radio" required name="subDocumentType" id={`upload_option__${idx}`}
                                                     value={d.value}
                                                     onChange={uploadDocumentChangeHandler}
                                                     disabled={d.disabled}
                                                 />
-                                                <label htmlFor={`aop__${idx}`}>{d.label}</label>
+                                                <label htmlFor={`upload_option__${idx}`}>{d.label}</label>
                                             </div>
-                                        )
-                                    })}
-
-                                </div>}
+                                        ))}
+                                        </div>
+                                    </div>
+                                )}
                             </div >
-
                             <div className='mt-2'>
-                                {!["aadhar", "pan"].includes(uploadDocument.documentType) ?
-                                    <p className='optionmsg'>Kindly choose Aadhar or Pan</p> :
-                                    uploadDocument.subDocumentType !== "upload-aadhar" ? <p className='optionmsg'>Kindly choose Upload Addhar Option</p> :
-                                        <>
+                                  {!["aadhar", "pan", "voterId"].includes(uploadDocument.documentType) ?
+                                        <p className='optionmsg'>Kindly choose Aadhar, Pan, or Voter ID</p> :
+                                        (uploadDocument.subDocumentType !== "upload-aadhar" && uploadDocument.subDocumentType !== "upload-pan" && uploadDocument.subDocumentType !== "upload-voter") ?
+                                            <p className='optionmsg'>Kindly choose Upload Aadhar, Pan, or Voter ID Option</p> :
+                                            <>
                                             <div className='mt-2'>
                                                 <label>Document ID No.<span /></label>
                                                 <input type="text" className='form-control' required name="documentId" value={uploadDocument.documentId} onChange={uploadDocumentChangeHandler} />
@@ -215,13 +236,13 @@ const UpdateFormComponent = ({
                                                 <input type="file" className='form-control' required name="frontPage" onChange={uploadDocumentChangeHandler} />
                                                 <p className='helpText'>Only PDF, PNG or JPEG files are accepted for upload.</p>
                                             </div>
-                                            {uploadDocument.documentType === "aadhar" ? <div className='mt-2'>
+                                            {uploadDocument.documentType === "aadhar" || uploadDocument.documentType === "voterId" ? <div className='mt-2'>
                                                 <label>Upload (Back Side)</label>
-                                                <input type="file" className='form-control' name="backPage" onChange={uploadDocumentChangeHandler} />
+                                                <input type="file" className='form-control' required name="backPage" onChange={uploadDocumentChangeHandler} />
                                                 <p className='helpText'>Only PDF, PNG or JPEG files are accepted for upload.</p>
                                             </div> : <></>}
 
-                                            {uploadDocument.documentType === "aadhar" ? <>
+                                            {uploadDocument.documentType === "aadhar" || uploadDocument.documentType === "pan" || uploadDocument.documentType === "voterId" ? <>
                                                 <div className="form-check mt-3">
                                                     <input className="form-check-input" type="checkbox" name="isAgreeAadharDec" id="agree-aadhar"
                                                         required
